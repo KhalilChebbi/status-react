@@ -31,9 +31,6 @@
              {}
              stickers-packs))
 
-(defn rpc->pending-packs [pending-packs]
-  (set pending-packs))
-
 (defn rpc->settings [settings]
   (-> settings
       (update :dapps-address eip55/address->checksum)
@@ -42,7 +39,7 @@
       (update :wallet/visible-tokens rpc->visible-tokens)
       (update :pinned-mailservers rpc->pinned-mailservers)
       (update :stickers/packs-installed rpc->stickers-packs)
-      (update :stickers/packs-pending rpc->pending-packs)
+      (update :stickers/packs-pending set)
       (update :custom-bootnodes rpc->custom-bootnodes)
       (update :custom-bootnodes-enabled? rpc->custom-bootnodes)
       (update :currency keyword)))

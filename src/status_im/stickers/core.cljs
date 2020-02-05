@@ -89,13 +89,12 @@
   [{:keys [db] :as cofx}]
   (let [sticker-packs (get-in db [:multiaccount :stickers/packs-installed])
         pending-packs (get-in db [:multiaccount :stickers/packs-pending] #{})]
-    (fx/merge cofx
-              {:db (assoc db
-                          :stickers/packs-installed sticker-packs
-                          :stickers/packs sticker-packs
-                          :stickers/packs-pending pending-packs)}
-              #(when (not-empty pending-packs)
-                 {:stickers/set-pending-timeout-fx nil}))))
+    (cond-> {:db (assoc db
+                        :stickers/packs-installed sticker-packs
+                        :stickers/packs sticker-packs
+                        :stickers/packs-pending pending-packs)}
+      (not-empty pending-packs)
+      (assoc :stickers/set-pending-timeout-fx nil))))
 
 (fx/defn install-stickers-pack
   [{{:keys [multiaccount] :as db} :db :as cofx} id]
