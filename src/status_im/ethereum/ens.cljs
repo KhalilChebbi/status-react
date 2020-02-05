@@ -12,7 +12,7 @@
 ;; this is the addresses of ens registries for the different networks
 (def ens-registries
   {:mainnet "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
-   :testnet "0x112234455c3a32fd11230c42e7bccd4a84e02010"
+   :testnet "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
    :rinkeby "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"})
 
 (def default-namehash "0000000000000000000000000000000000000000000000000000000000000000")
